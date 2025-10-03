@@ -1,34 +1,16 @@
 import React, { useRef, useState } from 'react'
-
-interface Coordinates {
-  x: number
-  y: number
-}
-
-function getClickCoordinates(
-  imgEl: HTMLImageElement,
-  e: React.MouseEvent<HTMLImageElement>,
-): Coordinates {
-  const rect = imgEl.getBoundingClientRect()
-
-  const x = e.clientX - rect.x
-  const y = e.clientY - rect.y
-
-  const xPercent = (x / rect.width) * 100
-  const yPercent = (y / rect.height) * 100
-
-  return { x: xPercent, y: yPercent }
-}
+import type Coordinate from '../types/Coordinate'
+import getClickCoordinate from '../utils/getClickCoordinate'
 
 export default function Board() {
   const imgRef = useRef<HTMLImageElement | null>(null)
-  const [selection, setSelection] = useState<Coordinates | null>(null)
+  const [selection, setSelection] = useState<Coordinate | null>(null)
 
   function handleClick(e: React.MouseEvent<HTMLImageElement>) {
     const imgEl = imgRef.current
     if (!imgEl) return
 
-    const coordinates = getClickCoordinates(imgEl, e)
+    const coordinates = getClickCoordinate(imgEl, e)
 
     setSelection(coordinates)
   }
