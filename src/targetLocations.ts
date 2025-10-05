@@ -1,4 +1,6 @@
-export default [
+import Target from './types/Target'
+
+const targetLocations: Target[] = [
   {
     name: 'skeleton',
     minX: 21.5,
@@ -40,3 +42,5 @@ export default [
     founded: false,
   },
 ]
+
+export default targetLocations
