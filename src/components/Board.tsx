@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import Coordinate from '../types/Coordinate'
+import targetLocations from '../targetLocations'
 
 interface BoardProps {
   onClick: (
@@ -14,7 +15,9 @@ export default function Board({ onClick, selection, marks }: BoardProps) {
   const imgRef = useRef<HTMLImageElement | null>(null)
 
   return (
-    <div className="flex justify-center bg-stone-200">
+    <div
+      className={`${marks.length >= targetLocations.length ? 'pointer-events-none' : ''} flex justify-center bg-stone-200`}
+    >
       <div className="relative overflow-hidden">
         <img
           className="cursor-crosshair shadow"

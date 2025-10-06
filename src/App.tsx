@@ -28,6 +28,11 @@ export default function App() {
         target.founded = true
         setSelection(null)
         setMarks([...marks, { x: coordinates.x, y: coordinates.y }])
+
+        if (marks.length + 1 >= targetLocations.length) {
+          alert('You won!')
+        }
+
         return
       }
     }
