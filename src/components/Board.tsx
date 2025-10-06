@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import Coordinate from '../types/Coordinate'
 import targetLocations from '../targetLocations'
+import dragonCharmersIsland from '../assets/dragon-charmers-island.webp'
 
 interface BoardProps {
   onClick: (
@@ -23,7 +24,7 @@ export default function Board({ onClick, selection, marks }: BoardProps) {
           className="cursor-crosshair shadow"
           ref={imgRef}
           onClick={(e) => onClick(imgRef.current, e)}
-          src="assets/dragon-charmers-island.webp"
+          src={dragonCharmersIsland}
           alt=""
         />
         {selection && (
