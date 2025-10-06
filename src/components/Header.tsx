@@ -11,7 +11,7 @@ function TipPicture({ src, founded }: TipPictureProps) {
       <img
         src={src}
         alt=""
-        className={`${founded ? '' : 'grayscale'} size-8 rounded-full border-1 border-sky-300 bg-white transition-colors`}
+        className={`${founded ? 'border-2' : 'grayscale border-1'} size-8 rounded-full border-sky-300 bg-white transition-colors`}
       />
     </div>
   )
