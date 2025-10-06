@@ -1,19 +1,17 @@
-import React, { useRef, useState } from 'react'
-import type Coordinate from '../types/Coordinate'
-import getClickCoordinate from '../utils/getClickCoordinate'
+import { useRef } from 'react'
+import Coordinate from '../types/Coordinate'
 
-export default function Board() {
+interface BoardProps {
+  onClick: (
+    imgEl: HTMLImageElement | null,
+    e: React.MouseEvent<HTMLImageElement>,
+  ) => void
+  selection: Coordinate | null
+  marks: Coordinate[]
+}
+
+export default function Board({ onClick, selection, marks }: BoardProps) {
   const imgRef = useRef<HTMLImageElement | null>(null)
-  const [selection, setSelection] = useState<Coordinate | null>(null)
-
-  function handleClick(e: React.MouseEvent<HTMLImageElement>) {
-    const imgEl = imgRef.current
-    if (!imgEl) return
-
-    const coordinates = getClickCoordinate(imgEl, e)
-
-    setSelection(coordinates)
-  }
 
   return (
     <div className="flex justify-center bg-stone-200">
@@ -21,7 +19,7 @@ export default function Board() {
         <img
           className="cursor-crosshair shadow"
           ref={imgRef}
-          onClick={handleClick}
+          onClick={(e) => onClick(imgRef.current, e)}
           src="assets/dragon-charmers-island.webp"
           alt=""
         />
@@ -34,6 +32,16 @@ export default function Board() {
             }}
           ></div>
         )}
+        {marks.map((mark, i) => (
+          <div
+            className="pointer-events-none absolute size-[40px] -translate-1/2 rounded-full bg-blue-500/20 outline-2 outline-blue-500"
+            key={i}
+            style={{
+              top: `${mark.y}%`,
+              left: `${mark.x}%`,
+            }}
+          ></div>
+        ))}
       </div>
     </div>
   )

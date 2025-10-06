@@ -1,6 +1,6 @@
-import Target from './types/Target'
+import { TargetLocation } from './types/Target'
 
-const targetLocations: Target[] = [
+const targetLocations: TargetLocation[] = [
   {
     name: 'skeleton',
     minX: 21.5,

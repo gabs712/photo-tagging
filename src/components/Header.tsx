@@ -1,9 +1,11 @@
+import { TargetName } from '../types/Target'
+
 interface TipPictureProps {
   src: string
   founded?: boolean
 }
 
-function TipPicture({ src, founded = false }: TipPictureProps) {
+function TipPicture({ src, founded }: TipPictureProps) {
   return (
     <div>
       <img
@@ -15,15 +17,34 @@ function TipPicture({ src, founded = false }: TipPictureProps) {
   )
 }
 
-export default function Header() {
+interface HeaderProps {
+  findings: TargetName[]
+}
+
+export default function Header({ findings }: HeaderProps) {
   return (
     <div className="sticky top-0 z-40 h-12 w-full bg-sky-700 px-2 py-2">
       <div className="flex items-center justify-center gap-3.5">
-        <TipPicture src="assets/hints/painter.png" />
-        <TipPicture src="assets/hints/apple_dragon.png" />
-        <TipPicture src="assets/hints/skeleton.png" />
-        <TipPicture src="assets/hints/flame.png" />
-        <TipPicture src="assets/hints/yellow_bird.png" />
+        <TipPicture
+          src="assets/hints/painter.png"
+          founded={findings.includes('painter')}
+        />
+        <TipPicture
+          src="assets/hints/apple_dragon.png"
+          founded={findings.includes('apple_dragon')}
+        />
+        <TipPicture
+          src="assets/hints/skeleton.png"
+          founded={findings.includes('skeleton')}
+        />
+        <TipPicture
+          src="assets/hints/flame.png"
+          founded={findings.includes('flame')}
+        />
+        <TipPicture
+          src="assets/hints/yellow_bird.png"
+          founded={findings.includes('yellow_bird')}
+        />
       </div>
     </div>
   )
